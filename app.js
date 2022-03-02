@@ -1,1 +1,23 @@
-хуй
+const config = require('./src/config/config');
+const express = require('express');
+const cors = require('cors');
+
+const Animals = require('./src/services/animals');
+const animals = new Animals();
+
+//Инициализируем модуль express;
+const app = express();
+
+//Инициализируем cors;
+app.use(cors());
+
+//Инициализируем подмодуль express.jsonParser;
+let jsonParser = express.json();
+
+app.get('/api/animals', jsonParser, function (req, res) {
+    animals.answer(req, res);
+});
+
+const server = app.listen(config.server.port, function () {
+    console.log('Server listened host:', config.server.host, 'port:', config.server.port);
+});
