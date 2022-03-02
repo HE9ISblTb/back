@@ -15,7 +15,17 @@ app.use(cors());
 let jsonParser = express.json();
 
 app.get('/api/animals', jsonParser, function (req, res) {
-    animals.answer(req, res);
+    animals.getAnimals(req, res);
+});
+
+app.post('/api/add-animals', jsonParser, function (req, res) {
+    console.log(req.body);
+    animals.addAnimals(req, res);
+});
+
+app.delete('/api/delete-animals', jsonParser, function (req, res) {
+    console.log(req.body);
+    animals.deleteAnimals(req, res);
 });
 
 const server = app.listen(config.server.port, function () {
