@@ -60,6 +60,10 @@ AnimalsModels.init({
     owner_animals: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    check_on_delete: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     sequelize,

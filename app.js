@@ -23,6 +23,11 @@ app.post('/api/add-animals', jsonParser, function (req, res) {
     animals.addAnimals(req, res);
 });
 
+app.put('/api/put-animals', jsonParser, function (req, res) {
+    console.log(req.body);
+    animals.responsibleFIO(req, res);
+});
+
 app.delete('/api/delete-animals', jsonParser, function (req, res) {
     console.log(req.body);
     animals.deleteAnimals(req, res);
