@@ -26,7 +26,7 @@ class Animals {
             balance: req.body.balance,
             documents: req.body.documents,
             owner_animals: req.body.owner_animals,
-            check_on_delete: req.body.check_on_delete,
+            deleted: req.body.deleted
         });
         console.log(animals);
         if (animals) {
@@ -45,11 +45,11 @@ class Animals {
         if (id) {
             const animals = await AnimalsModel.update(
                 {
-                    check_on_delete: Date().toLocaleString("ru")
+                    deleted: Date().toLocaleString("ru")
                 }, {
                     where: {
                         id: id,
-                        check_on_delete: null
+                        deleted: null
                     }
                 });
             if (animals) {
@@ -77,13 +77,51 @@ class Animals {
                     responsible_person: req.body.responsible_person
                 }, {
                     where: {
-                        id: id
+                        id: id,
+                        deleted: null
                     }
                 });
+            if (animals) {
+                res.send({
+                    code: 200
+                });
+            } else {
+                res.send({
+                    code: 500
+                });
+            }
         } else {
             res.send({
                 code: 500
             })
+        }
+    }
+
+    async photoVideo(req, res) {
+        const id = req.body.id;
+        if (id) {
+            const animals = await AnimalsModel.update(
+                {
+                    photo_video: req.body.photo_video
+                }, {
+                    where: {
+                        id: id,
+                        deleted: null
+                    }
+                });
+            if (animals) {
+                res.send({
+                    code: 200
+                });
+            } else {
+                res.send({
+                    code: 500
+                });
+            }
+        } else {
+            res.send({
+               code: 500
+            });
         }
     }
 

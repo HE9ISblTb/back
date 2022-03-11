@@ -23,9 +23,14 @@ app.post('/api/add-animals', jsonParser, function (req, res) {
     animals.addAnimals(req, res);
 });
 
-app.put('/api/put-animals', jsonParser, function (req, res) {
+app.put('/api/put-animals-FIO', jsonParser, function (req, res) {
     console.log(req.body);
     animals.responsibleFIO(req, res);
+});
+
+app.put('/api/put-animals-photo', jsonParser, function (req, res) {
+    console.log(req.body);
+    animals.photoVideo(req, res);
 });
 
 app.delete('/api/delete-animals', jsonParser, function (req, res) {

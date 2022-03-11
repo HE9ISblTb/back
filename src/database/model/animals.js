@@ -61,7 +61,7 @@ AnimalsModels.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    check_on_delete: {
+    deleted: {
         type: DataTypes.STRING,
         allowNull: false
     }
