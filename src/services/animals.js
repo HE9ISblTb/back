@@ -120,7 +120,7 @@ class Animals {
             }
         } else {
             res.send({
-               code: 500
+                code: 500
             });
         }
     }

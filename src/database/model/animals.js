@@ -62,7 +62,7 @@ AnimalsModels.init({
         allowNull: false
     },
     deleted: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false
     }
 }, {
