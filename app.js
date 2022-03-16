@@ -4,6 +4,8 @@ const cors = require('cors');
 
 const Animals = require('./src/services/animals');
 const animals = new Animals();
+const Content_Items = require('./src/services/content_items')
+const content_items = new Content_Items();
 
 //Инициализируем модуль express;
 const app = express();
@@ -16,6 +18,10 @@ let jsonParser = express.json();
 
 app.get('/api/animals', jsonParser, function (req, res) {
     animals.getAnimals(req, res);
+});
+
+app.get('/api/content', jsonParser, function (req, res) {
+    content_items.getContent(req, res);
 });
 
 app.post('/api/add-animals', jsonParser, function (req, res) {

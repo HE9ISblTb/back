@@ -1,35 +1,25 @@
-const AnimalsModel = require('../database/model/animals');
+const ContentModel = require('../database/model/content_items');
 
-class Animals {
+class Content_Items {
 
     constructor() {
     }
 
-    async getAnimals(req, res) {
-        const animals = await AnimalsModel.findAll({});
-        res.send(animals);
+    async getContent(req, res) {
+        const content = await ContentModel.findAll({});
+        res.send(content);
     };
 
-    async addAnimals(req, res) {
-        const animals = await AnimalsModel.create({
-            nickname_animals: req.body.nickname_animals,
-            animal_species: req.body.animal_species,
-            gender_animals: req.body.gender_animals,
-            photo_video: req.body.photo_video,
-            responsible_person: req.body.responsible_person,
-            date_of_birth: req.body.date_of_birth,
-            vaccination: req.body.vaccination,
-            deworming: req.body.deworming,
-            sterilization_castration: req.body.sterilization_castration,
-            treatment: req.body.treatment,
-            content_item: req.body.content_item,
-            balance: req.body.balance,
-            documents: req.body.documents,
-            owner_animals: req.body.owner_animals,
+    async addContent(req, res) {
+        const content = await ContentModel.create({
+            name_content: req.body.name_content,
+            full_name_owner: req.body.full_name_owner,
+            phone: req.body.phone,
+            payment: req.body.payment,
             deleted_at: req.body.deleted_at
         });
-        console.log(animals);
-        if (animals) {
+        console.log(content);
+        if (content) {
             res.send({
                 code: 200
             });
@@ -40,10 +30,10 @@ class Animals {
         }
     };
 
-    async deleteAnimals(req, res) {
+    async deleteContent(req, res) {
         const id = req.body.id;
         if (id) {
-            const animals = await AnimalsModel.update(
+            const content = await ContentModel.update(
                 {
                     deleted_at: Date().toLocaleString("ru")
                 }, {
@@ -52,7 +42,7 @@ class Animals {
                         deleted_at: null
                     }
                 });
-            if (animals) {
+            if (content) {
                 res.send({
                     code: 200
                 });
@@ -69,19 +59,19 @@ class Animals {
     }
 
     //И таких много, на каждое поле таблицы
-    async responsibleFIO(req, res) {
+    async fullNameOwner(req, res) {
         const id = req.body.id;
         if (id) {
-            const animals = await AnimalsModel.update(
+            const content = await ContentModel.update(
                 {
-                    responsible_person: req.body.responsible_person
+                    full_name_owner: req.body.full_name_owner
                 }, {
                     where: {
                         id: id,
                         deleted_at: null
                     }
                 });
-            if (animals) {
+            if (content) {
                 res.send({
                     code: 200
                 });
@@ -97,19 +87,19 @@ class Animals {
         }
     }
 
-    async photoVideo(req, res) {
+    async Phone(req, res) {
         const id = req.body.id;
         if (id) {
-            const animals = await AnimalsModel.update(
+            const content = await ContentModel.update(
                 {
-                    photo_video: req.body.photo_video
+                    phone: req.body.phone
                 }, {
                     where: {
                         id: id,
                         deleted_at: null
                     }
                 });
-            if (animals) {
+            if (content) {
                 res.send({
                     code: 200
                 });
@@ -128,4 +118,4 @@ class Animals {
 
 }
 
-module.exports = Animals;
+module.exports = Content_Items;
