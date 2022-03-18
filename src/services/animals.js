@@ -6,7 +6,11 @@ class Animals {
     }
 
     async getAnimals(req, res) {
-        const animals = await AnimalsModel.findAll({});
+        const animals = await AnimalsModel.findAll({
+            where: {
+                deleted_at: null
+            }
+        });
         res.send(animals);
     };
 
@@ -26,9 +30,8 @@ class Animals {
             balance: req.body.balance,
             documents: req.body.documents,
             owner_animals: req.body.owner_animals,
-            deleted_at: req.body.deleted_at
+            deleted_at: null
         });
-        console.log(animals);
         if (animals) {
             res.send({
                 code: 200
@@ -68,8 +71,7 @@ class Animals {
         }
     }
 
-    //И таких много, на каждое поле таблицы
-    async responsibleFIO(req, res) {
+    async editFIO(req, res) {
         const id = req.body.id;
         if (id) {
             const animals = await AnimalsModel.update(
@@ -97,7 +99,7 @@ class Animals {
         }
     }
 
-    async photoVideo(req, res) {
+    async editUrlPhotoVideo(req, res) {
         const id = req.body.id;
         if (id) {
             const animals = await AnimalsModel.update(

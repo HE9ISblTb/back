@@ -6,7 +6,11 @@ class Content_Items {
     }
 
     async getContent(req, res) {
-        const content = await ContentModel.findAll({});
+        const content = await ContentModel.findAll({
+            where: {
+                deleted_at: null
+            }
+        });
         res.send(content);
     };
 
@@ -18,7 +22,6 @@ class Content_Items {
             payment: req.body.payment,
             deleted_at: req.body.deleted_at
         });
-        console.log(content);
         if (content) {
             res.send({
                 code: 200

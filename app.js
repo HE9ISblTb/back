@@ -20,28 +20,24 @@ app.get('/api/animals', jsonParser, function (req, res) {
     animals.getAnimals(req, res);
 });
 
-app.get('/api/content', jsonParser, function (req, res) {
-    content_items.getContent(req, res);
-});
-
 app.post('/api/add-animals', jsonParser, function (req, res) {
-    console.log(req.body);
     animals.addAnimals(req, res);
 });
 
-app.put('/api/put-animals-FIO', jsonParser, function (req, res) {
-    console.log(req.body);
-    animals.responsibleFIO(req, res);
-});
-
-app.put('/api/put-animals-photo', jsonParser, function (req, res) {
-    console.log(req.body);
-    animals.photoVideo(req, res);
-});
-
 app.delete('/api/delete-animals', jsonParser, function (req, res) {
-    console.log(req.body);
     animals.deleteAnimals(req, res);
+});
+
+app.post('/api/edit-animals-fio', jsonParser, function (req, res) {
+    animals.editFIO(req, res);
+});
+
+app.post('/api/edit-url-photo-video', jsonParser, function (req, res) {
+    animals.editUrlPhotoVideo(req, res);
+});
+
+app.get('/api/content', jsonParser, function (req, res) {
+    content_items.getContent(req, res);
 });
 
 const server = app.listen(config.server.port, function () {

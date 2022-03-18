@@ -4,7 +4,6 @@ const sequelize = new Sequelize('postgres://postgres:trollotr@localhost:5432/tes
 class AnimalsModels extends Model {}
 
 AnimalsModels.init({
-    // Model attributes are defined here
     nickname_animals: {
         type: DataTypes.STRING,
         allowNull: false
