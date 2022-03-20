@@ -1,33 +1,28 @@
-const ContentModel = require('../database/model/content_items');
+const ResponsibleModel = require('../database/model/responsible_persons');
 
-class Content_Items {
+class Responsible_Persons {
 
     constructor() {
     }
 
-    async getContent(req, res) {
-        try {
-            const content_items = await ContentModel.findAll({
-                where: {
-                    deleted_at: null
-                },
-                attributes: ['id', 'name_content', 'full_name_owner', 'phone', 'payment', 'deleted_at']
-            });
-            res.send(content_items);
-        } catch (err) {
-            res.status(500).json(err)
-        }
+    async getResponsible(req, res) {
+        const responsible = await ResponsibleModel.findAll({
+            where: {
+                deleted_at: null
+            },
+            attributes: ["id", "full_name", "phone", "vkontakte_link", "deleted_at"]
+        });
+        res.send(responsible);
     };
 
-    async addContent(req, res) {
-        const content = await ContentModel.create({
-            name_content: req.body.name_content,
-            full_name_owner: req.body.full_name_owner,
+    async addResponsible(req, res) {
+        const responsible = await ResponsibleModel.create({
+            full_name: req.body.full_name,
             phone: req.body.phone,
-            payment: req.body.payment,
+            vkontakte_link: req.body.vkontakte_link,
             deleted_at: null
         });
-        if (content) {
+        if (responsible) {
             res.send({
                 code: 200
             });
@@ -38,10 +33,10 @@ class Content_Items {
         }
     };
 
-    async deleteContent(req, res) {
+    async deleteResponsible(req, res) {
         const id = req.body.id;
         if (id) {
-            const content = await ContentModel.update(
+            const responsible = await ResponsibleModel.update(
                 {
                     deleted_at: Date().toLocaleString("ru")
                 }, {
@@ -50,7 +45,7 @@ class Content_Items {
                         deleted_at: null
                     }
                 });
-            if (content) {
+            if (responsible) {
                 res.send({
                     code: 200
                 });
@@ -67,19 +62,19 @@ class Content_Items {
     }
 
     //И таких много, на каждое поле таблицы
-    async fullNameOwner(req, res) {
+    async editPhone(req, res) {
         const id = req.body.id;
         if (id) {
-            const content = await ContentModel.update(
+            const responsible = await ResponsibleModel.update(
                 {
-                    full_name_owner: req.body.full_name_owner
+                    phone: req.body.phone
                 }, {
                     where: {
                         id: id,
                         deleted_at: null
                     }
                 });
-            if (content) {
+            if (responsible) {
                 res.send({
                     code: 200
                 });
@@ -95,19 +90,19 @@ class Content_Items {
         }
     }
 
-    async Phone(req, res) {
+    async editVkontakteLink(req, res) {
         const id = req.body.id;
         if (id) {
-            const content = await ContentModel.update(
+            const responsible = await ResponsibleModel.update(
                 {
-                    phone: req.body.phone
+                    vkontakte_link: req.body.vkontakte_link
                 }, {
                     where: {
                         id: id,
                         deleted_at: null
                     }
                 });
-            if (content) {
+            if (responsible) {
                 res.send({
                     code: 200
                 });
@@ -126,4 +121,4 @@ class Content_Items {
 
 }
 
-module.exports = Content_Items;
+module.exports = Responsible_Persons;

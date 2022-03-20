@@ -1,43 +1,43 @@
-const AnimalsModel = require('../database/model/animals');
+const OwnersModel = require('../database/model/owners_animals');
 
-class Animals {
+class Owners_Animals {
 
     constructor() {
     }
 
-    async getAnimals(req, res) {
-        const animals = await AnimalsModel.findAll({
+    async getOwners(req, res) {
+        const owners = await OwnersModel.findAll({
             where: {
                 deleted_at: null
             }
         });
-        res.send(animals);
+        res.send(owners);
     };
 
     async getOneAnimals(req, res) {
         try {
             const id = req.body.id;
-            const animals = await  AnimalsModel.findOne({
+            const owners = await  OwnersModel.findOne({
                 where: {
                     nickname_animals: req.body.nickname_animals
                 },
                 attributes: ["nickname_animals",
-                             "animal_species",
-                             "gender_animals",
-                             "photo_video",
-                             "responsible_person",
-                             "date_of_birth",
-                             "vaccination",
-                             "deworming",
-                             "sterilization_castration",
-                             "treatment",
-                             "content_item",
-                             "balance",
-                             "documents",
-                             "owner_animals",
-                             "deleted_at"]
+                    "animal_species",
+                    "gender_animals",
+                    "photo_video",
+                    "responsible_person",
+                    "date_of_birth",
+                    "vaccination",
+                    "deworming",
+                    "sterilization_castration",
+                    "treatment",
+                    "content_item",
+                    "balance",
+                    "documents",
+                    "owner_animals",
+                    "deleted_at"]
             });
-            res.send(animals);
+            res.send(owners);
         } catch (err) {
             res.send({
                 code: 500
@@ -45,25 +45,18 @@ class Animals {
         }
     };
 
-    async addAnimals(req, res) {
-        const animals = await AnimalsModel.create({
-            nickname_animals: req.body.nickname_animals,
-            animal_species: req.body.animal_species,
-            gender_animals: req.body.gender_animals,
-            photo_video: req.body.photo_video,
-            responsible_person: req.body.responsible_person,
-            date_of_birth: req.body.date_of_birth,
-            vaccination: req.body.vaccination,
-            deworming: req.body.deworming,
-            sterilization_castration: req.body.sterilization_castration,
-            treatment: req.body.treatment,
-            content_item: req.body.content_item,
-            balance: req.body.balance,
-            documents: req.body.documents,
-            owner_animals: req.body.owner_animals,
-            deleted_at: null
+    async addOwners(req, res) {
+        const owners = await OwnersModel.create({
+                full_name: req.body.full_name,
+                phone: req.body.phone,
+                adress: req.body.adress,
+                nickname_animals: req.body.nickname_animals,
+                gender_animals: req.body.gender_animals,
+                date_handed_over_to_owner: req.body.date_of_birth,
+                return_date_reason: req.body.return_date_reason,
+                deleted_at: null
         });
-        if (animals) {
+        if (owners) {
             res.send({
                 code: 200
             });
@@ -74,10 +67,10 @@ class Animals {
         }
     };
 
-    async deleteAnimals(req, res) {
+    async deleteOwners(req, res) {
         const id = req.body.id;
         if (id) {
-            const animals = await AnimalsModel.update(
+            const owners = await OwnersModel.update(
                 {
                     deleted_at: Date().toLocaleString("ru")
                 }, {
@@ -86,7 +79,7 @@ class Animals {
                         deleted_at: null
                     }
                 });
-            if (animals) {
+            if (owners) {
                 res.send({
                     code: 200
                 });
@@ -103,19 +96,19 @@ class Animals {
     }
 
     //И таких много, на каждое поле таблицы
-        async editFIO(req, res) {
+    async editFullName(req, res) {
         const id = req.body.id;
         if (id) {
-            const animals = await AnimalsModel.update(
+            const owners = await OwnersModel.update(
                 {
-                    responsible_person: req.body.responsible_person
+                    full_name: req.body.full_name
                 }, {
                     where: {
                         id: id,
                         deleted_at: null
                     }
                 });
-            if (animals) {
+            if (owners) {
                 res.send({
                     code: 200
                 });
@@ -131,19 +124,19 @@ class Animals {
         }
     }
 
-        async editUrlPhotoVideo(req, res) {
+    async editNicknameAnimals(req, res) {
         const id = req.body.id;
         if (id) {
-            const animals = await AnimalsModel.update(
+            const owners = await OwnersModel.update(
                 {
-                    photo_video: req.body.photo_video
+                    nickname_animals: req.body.nickname_animals
                 }, {
                     where: {
                         id: id,
                         deleted_at: null
                     }
                 });
-            if (animals) {
+            if (owners) {
                 res.send({
                     code: 200
                 });
@@ -162,4 +155,4 @@ class Animals {
 
 }
 
-module.exports = Animals;
+module.exports = Owners_Animals;

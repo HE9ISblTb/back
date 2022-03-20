@@ -1,22 +1,19 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
 const sequelize = new Sequelize('postgres://postgres:trollotr@localhost:5432/testdb');
 
-class ContentModels extends Model {}
+class ResponsibleModels extends Model {
+}
 
-ContentModels.init({
-    name_content: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    full_name_owner: {
+ResponsibleModels.init({
+    full_name: {
         type: DataTypes.STRING,
         allowNull: true
     },
     phone: {
         type: DataTypes.STRING(20),
-        allowNull: false
+        allowNull: true
     },
-    payment: {
+    vkontakte_link: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -29,7 +26,7 @@ ContentModels.init({
 
     timestamps: false,
 
-    tableName: 'content_items'
+    tableName: 'responsible_persons'
 });
 
-module.exports = ContentModels;
+module.exports = ResponsibleModels;
