@@ -6,9 +6,45 @@ class Animals {
     }
 
     async getAnimals(req, res) {
-        const animals = await AnimalsModel.findAll({});
+        const animals = await AnimalsModel.findAll({
+            where: {
+                deleted_at: null
+            }
+        });
         res.send(animals);
     };
+
+    async getOneAnimals(req, res) {
+        try {
+            const id = req.body.id;
+            const animals = await  AnimalsModel.findOne({
+                where: {
+                    nickname_animals: req.body.nickname_animals
+                },
+                attributes: ["nickname_animals",
+                    "animal_species",
+                    "gender_animals",
+                    "photo_video",
+                    "responsible_person",
+                    "date_of_birth",
+                    "vaccination",
+                    "deworming",
+                    "sterilization_castration",
+                    "treatment",
+                    "content_item",
+                    "balance",
+                    "documents",
+                    "owner_animals",
+                    "deleted_at"]
+            });
+            res.send(animals);
+        } catch (err) {
+            res.send({
+                code: 500
+            });
+        }
+    };
+
 
     async addAnimals(req, res) {
         const animals = await AnimalsModel.create({
@@ -26,9 +62,8 @@ class Animals {
             balance: req.body.balance,
             documents: req.body.documents,
             owner_animals: req.body.owner_animals,
-            deleted_at: req.body.deleted_at
+            deleted_at: null
         });
-        console.log(animals);
         if (animals) {
             res.send({
                 code: 200
@@ -69,7 +104,7 @@ class Animals {
     }
 
     //И таких много, на каждое поле таблицы
-    async responsibleFIO(req, res) {
+    async editFIO(req, res) {
         const id = req.body.id;
         if (id) {
             const animals = await AnimalsModel.update(
@@ -97,7 +132,7 @@ class Animals {
         }
     }
 
-    async photoVideo(req, res) {
+    async editUrlPhotoVideo(req, res) {
         const id = req.body.id;
         if (id) {
             const animals = await AnimalsModel.update(
