@@ -6,17 +6,8 @@ class Content_Items {
     }
 
     async getContent(req, res) {
-        try {
-            const content_items = await ContentModel.findAll({
-                where: {
-                    deleted_at: null
-                },
-                attributes: ['id', 'name_content', 'full_name_owner', 'phone', 'payment', 'deleted_at']
-            });
-            res.send(content_items);
-        } catch (err) {
-            res.status(500).json(err)
-        }
+        const content = await ContentModel.findAll({});
+        res.send(content);
     };
 
     async addContent(req, res) {
@@ -25,8 +16,9 @@ class Content_Items {
             full_name_owner: req.body.full_name_owner,
             phone: req.body.phone,
             payment: req.body.payment,
-            deleted_at: null
+            deleted_at: req.body.deleted_at
         });
+        console.log(content);
         if (content) {
             res.send({
                 code: 200
