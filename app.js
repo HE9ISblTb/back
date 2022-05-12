@@ -10,6 +10,8 @@ const Owners_Animals = require('./src/services/owners_animals');
 const owners_animals = new Owners_Animals();
 const Responsible_Persons = require('./src/services/responsible_persons');
 const responsible_persons = new Responsible_Persons();
+const Login_Users = require('./src/services/login_users');
+const login_users = new Login_Users();
 
 //Инициализируем модуль express;
 const app = express();
@@ -104,7 +106,6 @@ app.post('/api/edit-responsible-vk-link', jsonParser, function (req, res) {
 app.delete('/api/delete-responsible', jsonParser, function (req, res) {
     responsible_persons.deleteResponsible(req, res);
 });
-
 
 const server = app.listen(config.server.port, function () {
     console.log('Server listened host:', config.server.host, 'port:', config.server.port);

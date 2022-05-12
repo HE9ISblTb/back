@@ -14,37 +14,6 @@ class Owners_Animals {
         res.send(owners);
     };
 
-    async getOneAnimals(req, res) {
-        try {
-            const id = req.body.id;
-            const owners = await  OwnersModel.findOne({
-                where: {
-                    nickname_animals: req.body.nickname_animals
-                },
-                attributes: ["nickname_animals",
-                    "animal_species",
-                    "gender_animals",
-                    "photo_video",
-                    "responsible_person",
-                    "date_of_birth",
-                    "vaccination",
-                    "deworming",
-                    "sterilization_castration",
-                    "treatment",
-                    "content_item",
-                    "balance",
-                    "documents",
-                    "owner_animals",
-                    "deleted_at"]
-            });
-            res.send(owners);
-        } catch (err) {
-            res.send({
-                code: 500
-            });
-        }
-    };
-
     async addOwners(req, res) {
         const owners = await OwnersModel.create({
                 full_name: req.body.full_name,
