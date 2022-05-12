@@ -107,6 +107,10 @@ app.delete('/api/delete-responsible', jsonParser, function (req, res) {
     responsible_persons.deleteResponsible(req, res);
 });
 
+app.post('/api/sign-in', jsonParser, function (req, res) {
+    login_users.signIn(req, res);
+});
+
 const server = app.listen(config.server.port, function () {
     console.log('Server listened host:', config.server.host, 'port:', config.server.port);
 });

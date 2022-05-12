@@ -5,14 +5,12 @@ class Login_Users {
     constructor() {
     }
 
-    async getUsersLoginOne(req, res) {
-        const login = req.body.login_users;
-        const password = req.body.password_users;
-        if (login & password) {
+    async signIn(req, res) {
+        if (req.body.login && req.body.password) {
             const logins = await UsersModel.findOne({
                 where: {
-                    login: req.body.login_users,
-                    password: req.body.password_users
+                    login: req.body.login,
+                    password: req.body.password
                 }
             });
             if (logins) {

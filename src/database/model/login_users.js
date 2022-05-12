@@ -4,15 +4,15 @@ const sequelize = new Sequelize('postgres://postgres:trollotr@localhost:5432/tes
 class UsersModels extends Model {}
 
 UsersModels.init({
-    login_users: {
+    login: {
         type: DataTypes.STRING,
         allow: false
     },
-    password_users: {
+    password: {
         type: DataTypes.STRING,
         allow: false
     },
-    create_date: {
+    created_date: {
         type: DataTypes.DATE,
         allow: false
     }
