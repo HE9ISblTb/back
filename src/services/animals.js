@@ -11,13 +11,16 @@ class Animals {
                 deleted_at: null
             }
         });
-        res.send(animals);
+        res.send({
+            code: 200,
+            data: animals
+        });
     };
 
     async getOneAnimals(req, res) {
         try {
             const id = req.body.id;
-            const animals = await  AnimalsModel.findOne({
+            const animals = await AnimalsModel.findOne({
                 where: {
                     nickname_animals: req.body.nickname_animals
                 },
@@ -37,7 +40,8 @@ class Animals {
                     "owner_animals",
                     "deleted_at"]
             });
-            res.send(animals);
+            res.send(
+                animals);
         } catch (err) {
             res.send({
                 code: 500

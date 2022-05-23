@@ -12,7 +12,10 @@ class Responsible_Persons {
             },
             attributes: ["id", "full_name", "phone", "vkontakte_link", "deleted_at"]
         });
-        res.send(responsible);
+        res.send({
+            code: 200,
+            data: responsible
+        });
     };
 
     async addResponsible(req, res) {
