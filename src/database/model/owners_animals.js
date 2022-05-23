@@ -20,6 +20,10 @@ OwnersModels.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    gender_animals: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     date_handed_over_to_owner: {
         type: DataTypes.DATE,
         allowNull: false

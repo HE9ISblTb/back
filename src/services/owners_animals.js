@@ -11,19 +11,22 @@ class Owners_Animals {
                 deleted_at: null
             }
         });
-        res.send(owners);
+        res.send({
+            code: 200,
+            data: owners
+        });
     };
 
     async addOwners(req, res) {
         const owners = await OwnersModel.create({
-                full_name: req.body.full_name,
-                phone: req.body.phone,
-                adress: req.body.adress,
-                nickname_animals: req.body.nickname_animals,
-                gender_animals: req.body.gender_animals,
-                date_handed_over_to_owner: req.body.date_of_birth,
-                return_date_reason: req.body.return_date_reason,
-                deleted_at: null
+            full_name: req.body.full_name,
+            phone: req.body.phone,
+            adress: req.body.adress,
+            nickname_animals: req.body.nickname_animals,
+            gender_animals: req.body.gender_animals,
+            date_handed_over_to_owner: req.body.date_of_birth,
+            return_date_reason: req.body.return_date_reason,
+            deleted_at: null
         });
         if (owners) {
             res.send({
