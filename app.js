@@ -35,7 +35,7 @@ app.post('/api/add-animals', jsonParser, function (req, res) {
     animals.addAnimals(req, res);
 });
 
-app.post('/api/edit-animals-fio', jsonParser, function (req, res) {
+app.post('/api/edit-animals', jsonParser, function (req, res) {
     animals.editFIO(req, res);
 });
 
