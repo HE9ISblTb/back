@@ -36,7 +36,7 @@ app.post('/api/add-animals', jsonParser, function (req, res) {
 });
 
 app.post('/api/edit-animals', jsonParser, function (req, res) {
-    animals.editFIO(req, res);
+    animals.editAnimals(req, res);
 });
 
 app.post('/api/edit-url-photo-video', jsonParser, function (req, res) {

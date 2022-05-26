@@ -111,7 +111,7 @@ class Animals {
     }
 
     //И таких много, на каждое поле таблицы
-    async editFIO(req, res) {
+    async editAnimals(req, res) {
         const id = req.body.id;
         const nickname_animals = req.body.nickname_animals;
         const animal_species = req.body.animal_species;
@@ -152,13 +152,11 @@ class Animals {
                 });
             if (animals) {
                 res.send({
-                    code: 200,
-                    message: 'Animal modified'
+                    code: 200
                 });
             } else {
                 res.send({
-                    code: 500,
-                    message: 'Animal not modified'
+                    code: 500
                 });
             }
         } else {
