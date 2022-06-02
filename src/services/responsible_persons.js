@@ -38,6 +38,7 @@ class Responsible_Persons {
 
     async deleteResponsible(req, res) {
         const id = req.body.id;
+        console.log(id);
         if (id) {
             const responsible = await ResponsibleModel.update(
                 {
@@ -65,12 +66,17 @@ class Responsible_Persons {
     }
 
     //И таких много, на каждое поле таблицы
-    async editPhone(req, res) {
+    async editResponsible(req, res) {
         const id = req.body.id;
+        const full_name = req.body.full_name;
+        const phone = req.body.phone;
+        const vkontakte_link = req.body.vkontakte_link;
         if (id) {
             const responsible = await ResponsibleModel.update(
                 {
-                    phone: req.body.phone
+                    full_name: req.body.full_name,
+                    phone: req.body.phone,
+                    vkontakte_link: req.body.vkontakte_link,
                 }, {
                     where: {
                         id: id,

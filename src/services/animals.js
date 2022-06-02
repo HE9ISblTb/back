@@ -110,7 +110,6 @@ class Animals {
         }
     }
 
-    //И таких много, на каждое поле таблицы
     async editAnimals(req, res) {
         const id = req.body.id;
         const nickname_animals = req.body.nickname_animals;
@@ -165,35 +164,6 @@ class Animals {
             })
         }
     }
-
-    async editUrlPhotoVideo(req, res) {
-        const id = req.body.id;
-        if (id) {
-            const animals = await AnimalsModel.update(
-                {
-                    photo_video: req.body.photo_video
-                }, {
-                    where: {
-                        id: id,
-                        deleted_at: null
-                    }
-                });
-            if (animals) {
-                res.send({
-                    code: 200
-                });
-            } else {
-                res.send({
-                    code: 500
-                });
-            }
-        } else {
-            res.send({
-                code: 500
-            });
-        }
-    }
-
 
 }
 

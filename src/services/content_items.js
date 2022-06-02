@@ -65,13 +65,19 @@ class Content_Items {
         }
     }
 
-    //И таких много, на каждое поле таблицы
-    async fullNameOwner(req, res) {
+    async editContent(req, res) {
         const id = req.body.id;
+        const name_content = req.body.name_content;
+        const full_name_owner = req.body.full_name_owner;
+        const phone = req.body.phone;
+        const payment = req.body.payment;
         if (id) {
             const content = await ContentModel.update(
                 {
-                    full_name_owner: req.body.full_name_owner
+                    name_content: req.body.name_content,
+                    full_name_owner: req.body.full_name_owner,
+                    phone: req.body.phone,
+                    payment: req.body.payment
                 }, {
                     where: {
                         id: id,
@@ -93,35 +99,6 @@ class Content_Items {
             })
         }
     }
-
-    async Phone(req, res) {
-        const id = req.body.id;
-        if (id) {
-            const content = await ContentModel.update(
-                {
-                    phone: req.body.phone
-                }, {
-                    where: {
-                        id: id,
-                        deleted_at: null
-                    }
-                });
-            if (content) {
-                res.send({
-                    code: 200
-                });
-            } else {
-                res.send({
-                    code: 500
-                });
-            }
-        } else {
-            res.send({
-                code: 500
-            });
-        }
-    }
-
 
 }
 

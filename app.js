@@ -39,11 +39,7 @@ app.post('/api/edit-animals', jsonParser, function (req, res) {
     animals.editAnimals(req, res);
 });
 
-app.post('/api/edit-url-photo-video', jsonParser, function (req, res) {
-    animals.editUrlPhotoVideo(req, res);
-});
-
-app.delete('/api/delete-animals', jsonParser, function (req, res) {
+app.post('/api/delete-animals', jsonParser, function (req, res) {
     animals.deleteAnimals(req, res);
 });
 
@@ -55,15 +51,11 @@ app.post('/api/add-content', jsonParser, function (req, res) {
     content_items.addContent(req, res);
 });
 
-app.post('/api/put-content-fullNameOwner', jsonParser, function (req, res) {
-    content_items.fullNameOwner(req, res);
+app.post('/api/edit-content', jsonParser, function (req, res) {
+    content_items.editContent(req, res);
 });
 
-app.post('/api/put-content-phone', jsonParser, function (req, res) {
-    content_items.Phone(req, res);
-});
-
-app.delete('/api/delete-content', jsonParser, function (req, res) {
+app.post('/api/delete-content', jsonParser, function (req, res) {
     content_items.deleteContent(req, res);
 });
 
@@ -75,15 +67,11 @@ app.post('/api/add-owners', jsonParser, function (req, res) {
     owners_animals.addOwners(req, res);
 });
 
-app.post('/api/edit-owners-fio', jsonParser, function (req, res) {
-    owners_animals.editFullName(req, res);
+app.post('/api/edit-owners', jsonParser, function (req, res) {
+    owners_animals.editOwners(req, res);
 });
 
-app.post('/api/edit-owners-nickname', jsonParser, function (req, res) {
-    owners_animals.editNicknameAnimals(req, res);
-});
-
-app.delete('/api/delete-owners', jsonParser, function (req, res) {
+app.post('/api/delete-owners', jsonParser, function (req, res) {
     owners_animals.deleteOwners(req, res);
 });
 
@@ -95,15 +83,11 @@ app.post('/api/add-responsible', jsonParser, function (req, res) {
     responsible_persons.addResponsible(req, res);
 });
 
-app.post('/api/edit-responsible-phone', jsonParser, function (req, res) {
-    responsible_persons.editPhone(req, res);
+app.post('/api/edit-responsible', jsonParser, function (req, res) {
+    responsible_persons.editResponsible(req, res);
 });
 
-app.post('/api/edit-responsible-vk-link', jsonParser, function (req, res) {
-    responsible_persons.editVkontakteLink(req, res);
-});
-
-app.delete('/api/delete-responsible', jsonParser, function (req, res) {
+app.post('/api/delete-responsible', jsonParser, function (req, res) {
     responsible_persons.deleteResponsible(req, res);
 });
 

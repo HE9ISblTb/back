@@ -24,7 +24,7 @@ class Owners_Animals {
             adress: req.body.adress,
             nickname_animals: req.body.nickname_animals,
             gender_animals: req.body.gender_animals,
-            date_handed_over_to_owner: req.body.date_of_birth,
+            date_handed_over_to_owner: req.body.date_handed_over_to_owner,
             return_date_reason: req.body.return_date_reason,
             deleted_at: null
         });
@@ -67,13 +67,25 @@ class Owners_Animals {
         }
     }
 
-    //И таких много, на каждое поле таблицы
-    async editFullName(req, res) {
+    async editOwners(req, res) {
         const id = req.body.id;
+        const full_name = req.body.full_name;
+        const phone = req.body.phone;
+        const adress = req.body.adress;
+        const nickname_animals = req.body.nickname_animals;
+        const gender_animals = req.body.gender_animals;
+        const date_handed_over_to_owner = req.body.date_of_birth;
+        const return_date_reason = req.body.return_date_reason;
         if (id) {
             const owners = await OwnersModel.update(
                 {
-                    full_name: req.body.full_name
+                    full_name: req.body.full_name,
+                    phone: req.body.phone,
+                    adress: req.body.adress,
+                    nickname_animals: req.body.nickname_animals,
+                    gender_animals: req.body.gender_animals,
+                    date_handed_over_to_owner: req.body.date_of_birth,
+                    return_date_reason: req.body.return_date_reason
                 }, {
                     where: {
                         id: id,
