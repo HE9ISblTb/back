@@ -26,12 +26,11 @@ app.get('/api/animals', jsonParser, function (req, res) {
     animals.getAnimals(req, res);
 });
 
-app.get('/api/animals-one', jsonParser, function (req, res) {
-    animals.getOneAnimals(req, res);
+app.post('/api/full-animals', jsonParser, function (req, res) {
+    animals.fullAnimals(req, res);
 });
 
 app.post('/api/add-animals', jsonParser, function (req, res) {
-    console.log(req.body);
     animals.addAnimals(req, res);
 });
 

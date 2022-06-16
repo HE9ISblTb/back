@@ -10,7 +10,7 @@ class Responsible_Persons {
             where: {
                 deleted_at: null
             },
-            attributes: ["id", "full_name", "phone", "vkontakte_link", "deleted_at"]
+            attributes: ["id", "full_name_responsible", "phone_responsible", "vkontakte_link", "deleted_at", "animal_id"]
         });
         res.send({
             code: 200,
@@ -20,8 +20,8 @@ class Responsible_Persons {
 
     async addResponsible(req, res) {
         const responsible = await ResponsibleModel.create({
-            full_name: req.body.full_name,
-            phone: req.body.phone,
+            full_name_responsible: req.body.full_name_responsible,
+            phone_responsible: req.body.phone_responsible,
             vkontakte_link: req.body.vkontakte_link,
             deleted_at: null
         });
@@ -38,7 +38,6 @@ class Responsible_Persons {
 
     async deleteResponsible(req, res) {
         const id = req.body.id;
-        console.log(id);
         if (id) {
             const responsible = await ResponsibleModel.update(
                 {
@@ -65,17 +64,16 @@ class Responsible_Persons {
         }
     }
 
-    //И таких много, на каждое поле таблицы
     async editResponsible(req, res) {
         const id = req.body.id;
-        const full_name = req.body.full_name;
-        const phone = req.body.phone;
+        const full_name_responsible = req.body.full_name_responsible;
+        const phone_responsible = req.body.phone_responsible;
         const vkontakte_link = req.body.vkontakte_link;
         if (id) {
             const responsible = await ResponsibleModel.update(
                 {
-                    full_name: req.body.full_name,
-                    phone: req.body.phone,
+                    full_name_responsible: req.body.full_name_responsible,
+                    phone_responsible: req.body.phone_responsible,
                     vkontakte_link: req.body.vkontakte_link,
                 }, {
                     where: {
@@ -98,35 +96,6 @@ class Responsible_Persons {
             })
         }
     }
-
-    async editVkontakteLink(req, res) {
-        const id = req.body.id;
-        if (id) {
-            const responsible = await ResponsibleModel.update(
-                {
-                    vkontakte_link: req.body.vkontakte_link
-                }, {
-                    where: {
-                        id: id,
-                        deleted_at: null
-                    }
-                });
-            if (responsible) {
-                res.send({
-                    code: 200
-                });
-            } else {
-                res.send({
-                    code: 500
-                });
-            }
-        } else {
-            res.send({
-                code: 500
-            });
-        }
-    }
-
 
 }
 

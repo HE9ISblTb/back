@@ -1,7 +1,8 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
 const sequelize = new Sequelize('postgres://postgres:trollotr@localhost:5432/testdb');
 
-class UsersModels extends Model {}
+class UsersModels extends Model {
+}
 
 UsersModels.init({
     login: {

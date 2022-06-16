@@ -10,7 +10,7 @@ class Content_Items {
             where: {
                 deleted_at: null
             },
-            attributes: ['id', 'name_content', 'full_name_owner', 'phone', 'payment', 'deleted_at']
+            attributes: ['id', 'name_content', 'full_name_owner', 'phone_content_items', 'payment', 'deleted_at']
         });
         res.send({
             code: 200,
@@ -22,7 +22,7 @@ class Content_Items {
         const content = await ContentModel.create({
             name_content: req.body.name_content,
             full_name_owner: req.body.full_name_owner,
-            phone: req.body.phone,
+            phone_content_items: req.body.phone_content_items,
             payment: req.body.payment,
             deleted_at: null
         });
@@ -69,14 +69,14 @@ class Content_Items {
         const id = req.body.id;
         const name_content = req.body.name_content;
         const full_name_owner = req.body.full_name_owner;
-        const phone = req.body.phone;
+        const phone_content_items = req.body.phone_content_items;
         const payment = req.body.payment;
         if (id) {
             const content = await ContentModel.update(
                 {
                     name_content: req.body.name_content,
                     full_name_owner: req.body.full_name_owner,
-                    phone: req.body.phone,
+                    phone_content_items: req.body.phone_content_items,
                     payment: req.body.payment
                 }, {
                     where: {

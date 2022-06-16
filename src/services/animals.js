@@ -1,4 +1,6 @@
 const AnimalsModel = require('../database/model/animals');
+const {Sequelize, QueryTypes} = require('sequelize');
+const sequelize = new Sequelize('postgres://postgres:trollotr@localhost:5432/testdb');
 
 class Animals {
 
@@ -16,42 +18,6 @@ class Animals {
             data: animals
         });
     };
-
-    async getOneAnimals(req, res) {
-        const id = req.body.id;
-        const animals = await AnimalsModel.findOne({
-            where: {
-                id: req.body.id,
-                deleted_at: null
-            },
-            attributes: ["id",
-                "nickname_animals",
-                "animal_species",
-                "gender_animals",
-                "photo_video",
-                "responsible_person",
-                "date_of_birth",
-                "vaccination",
-                "deworming",
-                "sterilization_castration",
-                "treatment",
-                "content_item",
-                "balance",
-                "documents",
-                "owner_animals"]
-        });
-        if (animals) {
-            res.send({
-                code: 200,
-                data: animals
-            });
-            res.send({
-                code: 500,
-                message: 'User not found'
-            });
-        }
-    };
-
 
     async addAnimals(req, res) {
         const animals = await AnimalsModel.create({
@@ -164,6 +130,28 @@ class Animals {
             })
         }
     }
+
+    async fullAnimals(req, res) {
+        const animalsId = req.body.id;
+        const results = await sequelize.query(
+            'SELECT * FROM animals JOIN content_items ON content_items.animal_id = animals.id JOIN owners_animals ON owners_animals.animal_id = animals.id JOIN responsible_persons ON responsible_persons.animal_id = animals.id WHERE animals.id = :animalsId',
+            {
+                replacements: {
+                    animalsId: animalsId
+                },
+                type: QueryTypes.SELECT
+            });
+        if (results) {
+            res.send({
+                code: 200,
+                data: results[0]
+            });
+        } else {
+            res.send({
+                code: 500
+            });
+        }
+    };
 
 }
 

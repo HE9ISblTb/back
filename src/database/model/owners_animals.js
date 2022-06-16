@@ -1,14 +1,15 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
 const sequelize = new Sequelize('postgres://postgres:trollotr@localhost:5432/testdb');
 
-class OwnersModels extends Model {}
+class OwnersModels extends Model {
+}
 
 OwnersModels.init({
     full_name: {
         type: DataTypes.STRING,
         allowNull: true
     },
-    phone: {
+    phone_owners: {
         type: DataTypes.STRING(20),
         allowNull: true
     },
@@ -35,6 +36,10 @@ OwnersModels.init({
     deleted_at: {
         type: DataTypes.DATE,
         allowNull: true
+    },
+    animal_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     sequelize,

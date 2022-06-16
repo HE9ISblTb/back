@@ -5,11 +5,11 @@ class ResponsibleModels extends Model {
 }
 
 ResponsibleModels.init({
-    full_name: {
+    full_name_responsible: {
         type: DataTypes.STRING,
         allowNull: true
     },
-    phone: {
+    phone_responsible: {
         type: DataTypes.STRING(20),
         allowNull: true
     },
@@ -20,6 +20,10 @@ ResponsibleModels.init({
     deleted_at: {
         type: DataTypes.DATE,
         allowNull: true
+    },
+    animal_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     sequelize,
