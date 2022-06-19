@@ -11,7 +11,10 @@ class Animals {
         const animals = await AnimalsModel.findAll({
             where: {
                 deleted_at: null
-            }
+            },
+            order: [
+                ['id', 'ASC']
+            ],
         });
         res.send({
             code: 200,
@@ -129,7 +132,7 @@ class Animals {
                 code: 500
             })
         }
-    }
+    };
 
     async fullAnimals(req, res) {
         const animalsId = req.body.id;

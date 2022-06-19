@@ -10,7 +10,10 @@ class Content_Items {
             where: {
                 deleted_at: null
             },
-            attributes: ['id', 'name_content', 'full_name_owner', 'phone_content_items', 'payment', 'deleted_at']
+            attributes: ['id', 'name_content', 'full_name_owner', 'phone_content_items', 'payment', 'deleted_at'],
+            order: [
+                ['id', 'ASC']
+            ],
         });
         res.send({
             code: 200,

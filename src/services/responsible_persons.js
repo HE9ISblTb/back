@@ -10,7 +10,10 @@ class Responsible_Persons {
             where: {
                 deleted_at: null
             },
-            attributes: ["id", "full_name_responsible", "phone_responsible", "vkontakte_link", "deleted_at", "animal_id"]
+            attributes: ["id", "full_name_responsible", "phone_responsible", "vkontakte_link", "deleted_at", "animal_id"],
+            order: [
+                ['id', 'ASC']
+            ],
         });
         res.send({
             code: 200,

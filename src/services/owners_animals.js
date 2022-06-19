@@ -9,7 +9,10 @@ class Owners_Animals {
         const owners = await OwnersModel.findAll({
             where: {
                 deleted_at: null
-            }
+            },
+            order: [
+                ['id', 'ASC']
+            ],
         });
         res.send({
             code: 200,
